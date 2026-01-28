@@ -4,4 +4,4 @@
 
 VAR_NAME= $(date)
 
-echo $VAR_NAME
+echo "$VAR_NAME"
