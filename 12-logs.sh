@@ -1,8 +1,8 @@
 #!/bin/bash
 
-USERID=(id -0)
-LOGS_FOLDER=/var/log/shell-script/
-LOGS_FILE=/var/log/shell-script/$0.log
+USERID=(id -u)
+LOGS_FOLDER="/"var/log/shell-script"
+LOGS_FILE="/var/log/shell-script/$0.log"
 
 
 if [ $USERID -ne 0 ]; then
