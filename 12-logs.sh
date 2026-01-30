@@ -28,5 +28,5 @@ VALIDATE(){
 for packages in $@ # 12-logs.sh nodejs python3 mysql
 do  
     dnf install $packages -y &>> $LOGS_FILE
-    VALIDATE $? "$2 installing $packages"
+    VALIDATE $? "installing $packages"
 done 
