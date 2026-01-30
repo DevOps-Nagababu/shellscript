@@ -28,8 +28,8 @@
 
     # Using For loop how we can do it?
 
-    for packages in $@ nginx nodejs python
+    for packages in $@ # nginx nodejs python
         do 
            dnf install $packages -y
-           VALIDATE $? "Installation"
+           VALIDATE $? "$package Installation"
     done 
