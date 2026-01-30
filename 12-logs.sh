@@ -25,8 +25,15 @@ VALIDATE(){
 # dnf install nginx -y &>> $LOGS_FILE
 # VALIDATE $? "Installing $2"
 
+
+#Check if already installed or not if not installed installe it if already instted skip the installataion
 for packages in $@ # 12-logs.sh nodejs python3 mysql
 do  
     dnf install $packages -y &>> $LOGS_FILE
-    VALIDATE $? "installing $packages"
+    if [ $? -ne 0 ]; then
+        dnf install $packages -y &>> $LOGS_FILE
+        VALIDATE $? "installing $packages"
+     else
+        echo "$package alrady installed , skipping
+    fi
 done 
