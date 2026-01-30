@@ -22,8 +22,8 @@ VALIDATE(){
     fi
 }
 
-dnf install nginx -y &>> $LOGS_FILE
-VALIDATE $? "Installing $2"
+# dnf install nginx -y &>> $LOGS_FILE
+# VALIDATE $? "Installing $2"
 
 for packages in $@ # 12-logs.sh nodejs python3 mysql
 do  
