@@ -16,11 +16,11 @@
     fi
     }
 
-    dnf install nginx -y
-    VALIDATE $? installing nginx
+    dnf installdfs nginx -y
+    VALIDATE $? "installing nginx"
 
     dnf install nodejs -y
-    VALIDATE $? installing nodejs
+    VALIDATE $? "installing nodejs"
 
     dnf install mysql -y
-    VALIDATE $? installing mysql
+    VALIDATE $? "installing mysql"
