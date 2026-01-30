@@ -17,19 +17,15 @@
     fi
     }
 
-    # dnf installdfs nginx -y
-    # VALIDATE $? "installing nginx"
+    dnf installdfs nginx -y
+    VALIDATE $? "installing nginx"
 
-    # dnf install nodejs -y
-    # VALIDATE $? "installing nodejs"
+    dnf install nodejs -y
+    VALIDATE $? "installing nodejs"
 
-    # dnf install mysql -y
-    # VALIDATE $? "installing mysql"
+    dnf install mysql -y
+    VALIDATE $? "installing mysql"
 
-    # Using For loop how we can do it?
+    Using For loop how we can do it?
 
-    for packages in $@ # nginx nodejs python
-        do 
-           dnf install $packages -y
-           VALIDATE $? "$package Installation"
-    done 
+   
