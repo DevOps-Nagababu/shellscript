@@ -2,7 +2,7 @@
 
 USERID=(id -0)
 
-if [ USERID -ne 0 ]; then
+if [ $USERID -ne 0 ]; then
     echo "Please login to the root user"
     exit 1
 fi
@@ -14,6 +14,7 @@ VALIDATE(){
         exit 1
     else
         echo "$2 .....SUCCESS"
+    fi
 }
 
 dnf install nginx -y
