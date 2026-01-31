@@ -13,10 +13,10 @@ DOMAIN_NAME="nagababu.online"
         --instance-type t3.micro \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
         --security-group-ids $SG_ID \
-        --query "Reservations[].Instances[].PrivateIpAddress" \
+        --query "Reservations[0].Instances[0].PrivateIpAddress" \
         --output text)
 
-        echo "Instance ID is : $INSTANCE"
+        echo "Instance ID is : '$INSTANCE'"
         # if [ $instance == "frontend" ]; then
         #     IP=$(aws ec2 describe-instances \
         #     --instance-ids $INSTANCE_ID \
