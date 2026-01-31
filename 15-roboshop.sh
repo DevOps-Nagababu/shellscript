@@ -28,7 +28,7 @@ DOMAIN_NAME="nagababu.online"
             RECORD_NAME="$instance.$DOMAIN_NAME"
         fi
             echo "IP Address : $IP"
-            aws route53 change-resource-record-sets
+            aws route53 change-resource-record-sets \
             --hosted-zone-id $HOSTED_ZONE \
             --change-batch "
                                 {
