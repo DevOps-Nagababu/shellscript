@@ -15,20 +15,39 @@ DOMAIN_NAME="nagababu.online"
         --security-group-ids $SG_ID \
         --query "Reservations[].Instances[].PrivateIpAddress" \
         --output text)
-    # if [ $instance == "frontend" ]; then
-    #     IP=$(aws ec2 describe-instances \
-    #     --instance-ids $INSTANCE_ID \
-    #     --query 'Reservations[*].Instances[*].PublicIpAddress' \
-    #     --output text)
-    # else
-    #     IP=$(aws ec2 describe-instances \
-    #     --instance-ids $INSTANCE_ID \
-    #     --query 'Reservations[*].Instances[*].PrivateIpAddress' \
-    #     --output text)
-    # fi
-        # echo "IP Address : $IP"
-        sleep 100
-        echo "Instance id : $INSTANCE_ID"
-
-
+        if [ $instance == "frontend" ]; then
+            IP=$(aws ec2 describe-instances \
+            --instance-ids $INSTANCE_ID \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --output text)
+        else
+            IP=$(aws ec2 describe-instances \
+            --instance-ids $INSTANCE_ID \
+            --query 'Reservations[*].Instances[*].PrivateIpAddress' \
+            --output text)
+            $RECORD_NAME=$instance.$DOMAIN_NAME
+        fi
+            echo "IP Address : $IP"
+            aws route53 change-resource-record-sets
+            --hosted-zone-id $HOSTED_ZONE \
+            --change-batch "
+                                {
+                "Changes": [
+                    {
+                    "Action": "UPSERT",
+                    "ResourceRecordSet": {
+                        "Name": "'$RECORD_NAME'",
+                        "Type": "A",
+                        "TTL": 1,
+                        "ResourceRecords": [
+                        {
+                            "Value": "'$IP'"
+                        }
+                        ]
+                    }
+                    }
+                ]
+                }
+            "
+        echo "Record created for $instance"
     done
