@@ -16,7 +16,7 @@ DOMAIN_NAME="nagababu.online"
         --query "Reservations[0].Instances[0].PrivateIpAddress" \
         --output text)
 
-        echo "Instance ID is : '$INSTANCE'"
+        echo "Instance ID is : $INSTANCE"
         # if [ $instance == "frontend" ]; then
         #     IP=$(aws ec2 describe-instances \
         #     --instance-ids $INSTANCE_ID \
