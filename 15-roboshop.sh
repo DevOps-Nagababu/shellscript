@@ -25,7 +25,7 @@ DOMAIN_NAME="nagababu.online"
             --instance-ids $INSTANCE_ID \
             --query 'Reservations[*].Instances[*].PrivateIpAddress' \
             --output text)
-            $RECORD_NAME="$instance.$DOMAIN_NAME"
+            RECORD_NAME="$instance.$DOMAIN_NAME"
         fi
             echo "IP Address : $IP"
             aws route53 change-resource-record-sets
