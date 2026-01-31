@@ -30,8 +30,9 @@ DOMAIN_NAME="nagababu.online"
             echo "IP Address : $IP"
             aws route53 change-resource-record-sets \
             --hosted-zone-id $HOSTED_ZONE \
-            --change-batch "
+            --change-batch '
                                 {
+                "Comment: "updating recard",
                 "Changes": [
                     {
                     "Action": "UPSERT",
@@ -48,6 +49,6 @@ DOMAIN_NAME="nagababu.online"
                     }
                 ]
                 }
-            "
+            '
         echo "Record created for $instance"
     done
