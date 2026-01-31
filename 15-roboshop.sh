@@ -13,7 +13,7 @@ DOMAIN_NAME="nagababu.online"
         --instance-type t3.micro \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
         --security-group-ids $SG_ID \
-        --query "Reservations[0].Instances[0].PrivateIpAddress" \
+        --query "Reservations[0].Instances[0].InstanceId" \
         --output text)
 
         echo "Instance ID is : $INSTANCE"
