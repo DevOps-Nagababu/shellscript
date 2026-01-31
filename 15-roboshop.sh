@@ -32,6 +32,33 @@ DOMAIN_NAME="nagababu.online"
 
         echo "IP Address is : $IP"
 
+       
+         
+
+            aws route53 change-resource-record-sets \
+                        --hosted-zone-id "$HOSTED_ZONE" \
+                        --change-batch '
+                                            
+                            "Comment: "updating recard",
+                            "Changes": [
+                                {
+                                "Action": "UPSERT",
+                                "ResourceRecordSet": {
+                                    "Name": "'$RECORD_NAME'",
+                                    "Type": "A",
+                                    "TTL": 1,
+                                    "ResourceRecords": [
+                                    {
+                                        "Value": "'$IP'"
+                                    }
+                                    ]
+                                }
+                                }
+                            ]
+                            }
+                        '
+
+
 
         # if [ $instance == "frontend" ]; then
         #     IP=$(aws ec2 describe-instances \
@@ -49,24 +76,24 @@ DOMAIN_NAME="nagababu.online"
         #     aws route53 change-resource-record-sets \
         #     --hosted-zone-id "$HOSTED_ZONE" \
         #     --change-batch '
-        #                         {
-        #         "Comment: "updating recard",
-        #         "Changes": [
-        #             {
-        #             "Action": "UPSERT",
-        #             "ResourceRecordSet": {
-        #                 "Name": "'$RECORD_NAME'",
-        #                 "Type": "A",
-        #                 "TTL": 1,
-        #                 "ResourceRecords": [
-        #                 {
-        #                     "Value": "'$IP'"
-        #                 }
-        #                 ]
-        #             }
-        #             }
-        #         ]
-        #         }
-        #     '
+                                
+            #     "Comment: "updating recard",
+            #     "Changes": [
+            #         {
+            #         "Action": "UPSERT",
+            #         "ResourceRecordSet": {
+            #             "Name": "'$RECORD_NAME'",
+            #             "Type": "A",
+            #             "TTL": 1,
+            #             "ResourceRecords": [
+            #             {
+            #                 "Value": "'$IP'"
+            #             }
+            #             ]
+            #         }
+            #         }
+            #     ]
+            #     }
+            # '
         # echo "Record created for $instance"
     done
