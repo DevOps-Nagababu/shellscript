@@ -26,7 +26,8 @@ DOMAIN_NAME="nagababu.online"
     #     --query 'Reservations[*].Instances[*].PrivateIpAddress' \
     #     --output text)
     # fi
-    #     echo "IP Address : $IP"
+        # echo "IP Address : $IP"
+        echo "Instance id : $INSTANCE_ID"
 
 
     done
