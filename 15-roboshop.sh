@@ -11,7 +11,7 @@ DOMAIN_NAME="nagababu.online"
         INSTANCE_ID=$(aws ec2 run-instances \
         --image-id $AMI_ID \
         --instance-type t3.micro \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]' \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value="$instance"}]' \
         --security-group-ids $SG_ID \
         --query 'Reservations[].Instances[].PrivateIpAddress' \
         --output text)
