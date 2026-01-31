@@ -33,30 +33,31 @@ DOMAIN_NAME="nagababu.online"
         echo "IP Address is : $IP"
 
        
-         
+         RECORD_NAME=$instance.$DOMAIN_NAME
 
             aws route53 change-resource-record-sets \
                         --hosted-zone-id "$HOSTED_ZONE" \
                         --change-batch '
-                                            
-                            "Comment: "updating recard",
-                            "Changes": [
                                 {
-                                "Action": "UPSERT",
-                                "ResourceRecordSet": {
-                                    "Name": "'$RECORD_NAME'",
-                                    "Type": "A",
-                                    "TTL": 1,
-                                    "ResourceRecords": [
-                                    {
-                                        "Value": "'$IP'"
-                                    }
-                                    ]
-                                }
-                                }
-                            ]
-                            }
-                        '
+  "Comment": "updating record",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "'$RECORD_NAME'",
+        "Type": "A",
+        "TTL": 1,
+        "ResourceRecords": [
+          {
+            "Value": "'$IP'"
+          }
+        ]
+      }
+    }
+  ]
+}     
+'       
+                            
 
 
 
