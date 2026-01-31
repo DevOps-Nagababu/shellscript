@@ -17,6 +17,22 @@ DOMAIN_NAME="nagababu.online"
         --output text)
 
         echo "Instance ID is : $INSTANCE_ID"
+        if [ $instance == 'frontend' ]; then
+            IP=$(aws ec2 describe-instances \
+            --instance-ids $INSTANCE_ID \
+            --query 'Reservations[].Instances[].PublicIpAddress' \
+            --output text)
+            else
+            IP=$(aws ec2 describe-instances \
+            --instance-ids $INSTANCE_ID \
+            --query 'Reservations[].Instances[].PrivateIpAddress' \
+            --output text)
+
+        fi
+
+        echo "IP Address is : $IP"
+
+
         # if [ $instance == "frontend" ]; then
         #     IP=$(aws ec2 describe-instances \
         #     --instance-ids $INSTANCE_ID \
