@@ -18,45 +18,42 @@ DOMAIN_NAME="nagababu.online"
 
         echo "Instance ID is : $INSTANCE_ID"
         if [ $instance == 'frontend' ]; then
-            IP=$(aws ec2 describe-instances \
-            --instance-ids $INSTANCE_ID \
-            --query 'Reservations[].Instances[].PublicIpAddress' \
-            --output text)
+                IP=$(aws ec2 describe-instances \
+                --instance-ids $INSTANCE_ID \
+                --query 'Reservations[].Instances[].PublicIpAddress' \
+                --output text)
+                RECORD_NAME=$DOMAIN_NAME
             else
-            IP=$(aws ec2 describe-instances \
-            --instance-ids $INSTANCE_ID \
-            --query 'Reservations[].Instances[].PrivateIpAddress' \
-            --output text)
-
+                IP=$(aws ec2 describe-instances \
+                --instance-ids $INSTANCE_ID \
+                --query 'Reservations[].Instances[].PrivateIpAddress' \
+                --output text)
+                RECORD_NAME=$instance.$DOMAIN_NAME
         fi
 
-        echo "IP Address is : $IP"
-
-       
-         RECORD_NAME=$instance.$DOMAIN_NAME
-
+            echo "IP Address is : $IP"
             aws route53 change-resource-record-sets \
-                        --hosted-zone-id "$HOSTED_ZONE" \
-                        --change-batch '
+            --hosted-zone-id "$HOSTED_ZONE" \
+            --change-batch '
                                 {
-  "Comment": "updating record",
-  "Changes": [
-    {
-      "Action": "UPSERT",
-      "ResourceRecordSet": {
-        "Name": "'$RECORD_NAME'",
-        "Type": "A",
-        "TTL": 1,
-        "ResourceRecords": [
-          {
-            "Value": "'$IP'"
-          }
-        ]
-      }
-    }
-  ]
-}     
-'       
+                "Comment": "updating record",
+                "Changes": [
+                    {
+                    "Action": "UPSERT",
+                    "ResourceRecordSet": {
+                        "Name": "'$RECORD_NAME'",
+                        "Type": "A",
+                        "TTL": 1,
+                        "ResourceRecords": [
+                        {
+                            "Value": "'$IP'"
+                        }
+                        ]
+                    }
+                    }
+                ]
+                }     
+                '       
                             
 
 
