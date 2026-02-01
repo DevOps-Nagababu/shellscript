@@ -7,6 +7,7 @@ mkdir -p $LOG_FOLDER
 VALIDATION(){
     if [ $1 -ne 0 ]; then
         echo " Installation ....FAILD"
+        exit 1
     else
         echo " Installation ....SUCCESS"
     fi
