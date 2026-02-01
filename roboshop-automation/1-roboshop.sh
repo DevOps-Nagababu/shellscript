@@ -15,7 +15,12 @@ VALIDATION(){
 
 for packages in $@ 
 do
+    dnf list installed $packages
+    if [ $? -ne 0 ]; then
+    echo "$packages not installed , now installing"
     dnf install $packages -y
-    VALIDATION $? "Installation $packages"
+    VALIDATION $? "$packages Installation "
+    else
+        echo "$packages are alredy installed"
 
 done
