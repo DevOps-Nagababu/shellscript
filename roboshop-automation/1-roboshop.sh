@@ -5,7 +5,7 @@ LOG_FILE="$LOG_FOLDER/$0.log"
 mkdir -p $LOG_FOLDER
 
 VALIDATION(){
-    if [ $1 -ne 0 ]; then
+    if [ $? -ne 0 ]; then
         echo " Installation ....FAILD"
         exit 1
     else
