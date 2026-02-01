@@ -5,17 +5,17 @@ LOG_FILE="$LOG_FOLDER/$0.log"
 mkdir -p $LOG_FOLDER
 
 VALIDATION(){
-    if [ $? -ne 0 ]; then
-        echo " Installation ....FAILD"
+    if [ $1 -ne 0 ]; then
+        echo " $2 Installation ....FAILD"
         exit 1
     else
-        echo " Installation ....SUCCESS"
+        echo " $2 Installation ....SUCCESS"
     fi
 }
 
 for packages in $@ 
 do
     dnf install $packages -y
-    VALIDATION S? "Installation $packages"
+    VALIDATION $? "Installation $packages"
 
 done
