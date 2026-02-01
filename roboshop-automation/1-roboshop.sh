@@ -13,11 +13,11 @@ fi
 VALIDATE(){
    if [ $1 -ne 0 ]; then
         echo "$2 Installation .....FAILD"
+        exit 1
     else
         echo "$2 Installation......SUCCESS"
     fi
 }
 
 dnf install nginx -y
-VALIDATE $? "installing nginx$
-
+VALIDATE $? "installing nginx"
